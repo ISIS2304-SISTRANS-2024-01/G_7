@@ -12,7 +12,8 @@ import uniandes.edu.co.parranderos.modelo.Usuario;
 import uniandes.edu.co.parranderos.repositorio.UsuarioRepository;
 
 
-@RestController // Debo cambiarlo por @Controller cuando ya teng ala interfaz
+//@RestController // Debo cambiarlo por @Controller cuando ya teng ala interfaz
+@Controller
 public class UsuarioController {
     
     @Autowired
@@ -21,7 +22,7 @@ public class UsuarioController {
     @GetMapping("/usuarios")
     public String usuarios(Model model) {
         model.addAttribute("usuarios", usuarioRepository.darUsuarios());
-        return model.toString();
+        return "usuarios";
     }
 
     @GetMapping("/usuarios/new")
