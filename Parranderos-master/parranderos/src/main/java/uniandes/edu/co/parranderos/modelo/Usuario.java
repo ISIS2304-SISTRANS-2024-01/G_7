@@ -8,142 +8,202 @@ import jakarta.persistence.Table;
 @Table(name="USUARIO")
 public class Usuario {
     
-    private String login;
-    private String palabraClave;
-    private String rol;
-    private String documentoIdentificacionTipo;
+    private String LOGIN;
+    private String PALABRACLAVE;
+    private String ROL;
+    private String DOCUMENTOIDENTIFICACIONTIPO;
     @Id
-    private int documentoIdentificacionNumero;
-    private String nombre;
-    private String nacionalidad;
-    private String direccionFisica;
-    private String direccionElectronica;
-    private int telefono;
-    private String ciudad;
-    private String departamento;
-    private int codigoPostal;
+    private int DOCUMENTOIDENTIFICACIONNUMERO;
+    private String NOMBRE;
+    private String NACIONALIDAD;
+    private String DIRECCIONFISICA;
+    private String DIRECCIONELECTRONICA;
+    private int TELEFONO;
+    private String CIUDAD;
+    private String DEPARTAMENTO;
+    private int CODIGOPOSTAL;
 
     public Usuario() {;}
 
-    public Usuario(String login, String palabraClave, String rol, String documentoIdentificacionTipo, int documentoIdentificacionNumero, String nombre, String nacionalidad, String direccionFisica, String direccionElectronica, int telefono, String ciudad, String departamento, int codigoPostal) {
-        this.login = login;
-        this.palabraClave = palabraClave;
-        this.rol = rol;
-        this.documentoIdentificacionTipo = documentoIdentificacionTipo;
-        this.documentoIdentificacionNumero = documentoIdentificacionNumero;
-        this.nombre = nombre;
-        this.nacionalidad = nacionalidad;
-        this.direccionFisica = direccionFisica;
-        this.direccionElectronica = direccionElectronica;
-        this.telefono = telefono;
-        this.ciudad = ciudad;
-        this.departamento = departamento;
-        this.codigoPostal = codigoPostal;
+    
+
+    public Usuario(String lOGIN, String pALABRACLAVE, String rOL, String dOCUMENTOIDENTIFICACIONTIPO,
+            int dOCUMENTOIDENTIFICACIONNUMERO, String nOMBRE, String nACIONALIDAD, String dIRECCIONFISICA,
+            String dIRECCIONELECTRONICA, int tELEFONO, String cIUDAD, String dEPARTAMENTO, int cODIGOPOSTAL) {
+        LOGIN = lOGIN;
+        PALABRACLAVE = pALABRACLAVE;
+        ROL = rOL;
+        DOCUMENTOIDENTIFICACIONTIPO = dOCUMENTOIDENTIFICACIONTIPO;
+        DOCUMENTOIDENTIFICACIONNUMERO = dOCUMENTOIDENTIFICACIONNUMERO;
+        NOMBRE = nOMBRE;
+        NACIONALIDAD = nACIONALIDAD;
+        DIRECCIONFISICA = dIRECCIONFISICA;
+        DIRECCIONELECTRONICA = dIRECCIONELECTRONICA;
+        TELEFONO = tELEFONO;
+        CIUDAD = cIUDAD;
+        DEPARTAMENTO = dEPARTAMENTO;
+        CODIGOPOSTAL = cODIGOPOSTAL;
     }
 
-    public String getLogin() {
-        return login;
+
+
+    public String getLOGIN() {
+        return LOGIN;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+
+
+    public void setLOGIN(String lOGIN) {
+        LOGIN = lOGIN;
     }
 
-    public String getPalabraClave() {
-        return palabraClave;
+
+
+    public String getPALABRACLAVE() {
+        return PALABRACLAVE;
     }
 
-    public void setPalabraClave(String palabraClave) {
-        this.palabraClave = palabraClave;
+
+
+    public void setPALABRACLAVE(String pALABRACLAVE) {
+        PALABRACLAVE = pALABRACLAVE;
     }
 
-    public String getRol() {
-        return rol;
+
+
+    public String getROL() {
+        return ROL;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+
+
+    public void setROL(String rOL) {
+        ROL = rOL;
     }
 
-    public String getDocumentoIdentificacionTipo() {
-        return documentoIdentificacionTipo;
+
+
+    public String getDOCUMENTOIDENTIFICACIONTIPO() {
+        return DOCUMENTOIDENTIFICACIONTIPO;
     }
 
-    public void setDocumentoIdentificacionTipo(String documentoIdentificacionTipo) {
-        this.documentoIdentificacionTipo = documentoIdentificacionTipo;
+
+
+    public void setDOCUMENTOIDENTIFICACIONTIPO(String dOCUMENTOIDENTIFICACIONTIPO) {
+        DOCUMENTOIDENTIFICACIONTIPO = dOCUMENTOIDENTIFICACIONTIPO;
     }
 
-    public int getDocumentoIdentificacionNumero() {
-        return documentoIdentificacionNumero;
+
+
+    public int getDOCUMENTOIDENTIFICACIONNUMERO() {
+        return DOCUMENTOIDENTIFICACIONNUMERO;
     }
 
-    public void setDocumentoIdentificacionNumero(int documentoIdentificacionNumero) {
-        this.documentoIdentificacionNumero = documentoIdentificacionNumero;
+
+
+    public void setDOCUMENTOIDENTIFICACIONNUMERO(int dOCUMENTOIDENTIFICACIONNUMERO) {
+        DOCUMENTOIDENTIFICACIONNUMERO = dOCUMENTOIDENTIFICACIONNUMERO;
     }
 
-    public String getNombre() {
-        return nombre;
+
+
+    public String getNOMBRE() {
+        return NOMBRE;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+
+
+    public void setNOMBRE(String nOMBRE) {
+        NOMBRE = nOMBRE;
     }
 
-    public String getNacionalidad() {
-        return nacionalidad;
+
+
+    public String getNACIONALIDAD() {
+        return NACIONALIDAD;
     }
 
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
+
+
+    public void setNACIONALIDAD(String nACIONALIDAD) {
+        NACIONALIDAD = nACIONALIDAD;
     }
 
-    public String getDireccionFisica() {
-        return direccionFisica;
+
+
+    public String getDIRECCIONFISICA() {
+        return DIRECCIONFISICA;
     }
 
-    public void setDireccionFisica(String direccionFisica) {
-        this.direccionFisica = direccionFisica;
+
+
+    public void setDIRECCIONFISICA(String dIRECCIONFISICA) {
+        DIRECCIONFISICA = dIRECCIONFISICA;
     }
 
-    public String getDireccionElectronica() {
-        return direccionElectronica;
+
+
+    public String getDIRECCIONELECTRONICA() {
+        return DIRECCIONELECTRONICA;
     }
 
-    public void setDireccionElectronica(String direccionElectronica) {
-        this.direccionElectronica = direccionElectronica;
+
+
+    public void setDIRECCIONELECTRONICA(String dIRECCIONELECTRONICA) {
+        DIRECCIONELECTRONICA = dIRECCIONELECTRONICA;
     }
 
-    public int getTelefono() {
-        return telefono;
+
+
+    public int getTELEFONO() {
+        return TELEFONO;
     }
 
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
+
+
+    public void setTELEFONO(int tELEFONO) {
+        TELEFONO = tELEFONO;
     }
 
-    public String getCiudad() {
-        return ciudad;
+
+
+    public String getCIUDAD() {
+        return CIUDAD;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+
+
+    public void setCIUDAD(String cIUDAD) {
+        CIUDAD = cIUDAD;
     }
 
-    public String getDepartamento() {
-        return departamento;
+
+
+    public String getDEPARTAMENTO() {
+        return DEPARTAMENTO;
     }
 
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
+
+
+    public void setDEPARTAMENTO(String dEPARTAMENTO) {
+        DEPARTAMENTO = dEPARTAMENTO;
     }
 
-    public int getCodigoPostal() {
-        return codigoPostal;
+
+
+    public int getCODIGOPOSTAL() {
+        return CODIGOPOSTAL;
     }
 
-    public void setCodigoPostal(int codigoPostal) {
-        this.codigoPostal = codigoPostal;
+
+
+    public void setCODIGOPOSTAL(int cODIGOPOSTAL) {
+        CODIGOPOSTAL = cODIGOPOSTAL;
     }
+
+    
+
+  
 
     
 
