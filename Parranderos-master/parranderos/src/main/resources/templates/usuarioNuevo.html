@@ -53,6 +53,15 @@
         <label>CODIGOPOSTAL</label>
         <input type="text" id="CODIGOPOSTAL" name="CODIGOPOSTAL" required />
 
+        <label>Tipo de persona (si es cliente)</label>
+        <select name="TIPOCLIENTE" id="TIPOCLIENTE">
+            <option value="Natural" th:field="*{usuarioCliente.TIPOCLIENTE}">Natural</option>
+            <option value="Juridico" th:field="*{usuarioCliente.TIPOCLIENTE}">Juridico</option>
+        </select>
+
+        <label>ID de empleado (si es empleado)</label>
+        <input type="text" id="IDEMPLEADO" name="IDEMPLEADO" th:field="*{usuarioEmpleado.IDEMPLEADO}"/>
+
         <input type="submit" value="Crear">
     </form>
 </body>

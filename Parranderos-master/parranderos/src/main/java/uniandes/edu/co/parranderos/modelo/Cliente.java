@@ -9,32 +9,33 @@ import jakarta.persistence.Table;
 public class Cliente {
 
     @Id
-    private int id;
-    private String tipoCliente;
+    private int ID;
+    private String TIPOCLIENTE;
     
     public Cliente() {;}
 
-    public Cliente(int id, String tipoCliente) {
-        this.id = id;
-        this.tipoCliente = tipoCliente;
+    public Cliente(int iD, String tIPOCLIENTE) {
+        ID = iD;
+        TIPOCLIENTE = tIPOCLIENTE;
     }
 
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setID(int iD) {
+        ID = iD;
     }
 
-    public String getTipoCliente() {
-        return tipoCliente;
+    public String getTIPOCLIENTE() {
+        return TIPOCLIENTE;
     }
 
-    public void setTipoCliente(String tipoCliente) {
-        this.tipoCliente = tipoCliente;
+    public void setTIPOCLIENTE(String tIPOCLIENTE) {
+        TIPOCLIENTE = tIPOCLIENTE;
     }
 
+    
     
     
 

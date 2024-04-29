@@ -8,52 +8,54 @@ import jakarta.persistence.Table;
 @Table(name="EMPLEADO")
 public class Empleado {
     
-    private String rol;
-    private String idEmpleado;
+    private String ROL;
+    private String IDEMPLEADO;
     @Id
-    private int documentoIdentificacionNumero;
-    private String direccion;
+    private int DOCUMENTOIDENTIFICACIONNUMERO;
+    private String DIRECCION;
     
     public Empleado() {;}
+
+    public Empleado(String rOL, String iDEMPLEADO, int dOCUMENTOIDENTIFICACIONNUMERO, String dIRECCION) {
+        ROL = rOL;
+        IDEMPLEADO = iDEMPLEADO;
+        DOCUMENTOIDENTIFICACIONNUMERO = dOCUMENTOIDENTIFICACIONNUMERO;
+        DIRECCION = dIRECCION;
+    }
+
+    public String getROL() {
+        return ROL;
+    }
+
+    public void setROL(String rOL) {
+        ROL = rOL;
+    }
+
+    public String getIDEMPLEADO() {
+        return IDEMPLEADO;
+    }
+
+    public void setIDEMPLEADO(String iDEMPLEADO) {
+        IDEMPLEADO = iDEMPLEADO;
+    }
+
+    public int getDOCUMENTOIDENTIFICACIONNUMERO() {
+        return DOCUMENTOIDENTIFICACIONNUMERO;
+    }
+
+    public void setDOCUMENTOIDENTIFICACIONNUMERO(int dOCUMENTOIDENTIFICACIONNUMERO) {
+        DOCUMENTOIDENTIFICACIONNUMERO = dOCUMENTOIDENTIFICACIONNUMERO;
+    }
+
+    public String getDIRECCION() {
+        return DIRECCION;
+    }
+
+    public void setDIRECCION(String dIRECCION) {
+        DIRECCION = dIRECCION;
+    }
     
-    public Empleado(String rol, String idEmpleado, int documentoIdentificacionNumero, String direccion) {
-        this.rol = rol;
-        this.idEmpleado = idEmpleado;
-        this.documentoIdentificacionNumero = documentoIdentificacionNumero;
-        this.direccion = direccion;
-    }
-
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
-
-    public String getIdEmpleado() {
-        return idEmpleado;
-    }
-
-    public void setIdEmpleado(String idEmpleado) {
-        this.idEmpleado = idEmpleado;
-    }
-
-    public int getDocumentoIdentificacionNumero() {
-        return documentoIdentificacionNumero;
-    }
-
-    public void setDocumentoIdentificacionNumero(int documentoIdentificacionNumero) {
-        this.documentoIdentificacionNumero = documentoIdentificacionNumero;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
+    
 
     
 
