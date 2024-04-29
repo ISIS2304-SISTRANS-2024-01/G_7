@@ -8,41 +8,41 @@ import jakarta.persistence.Table;
 @Table(name="OFICINA")
 public class Oficina {
 
-    private String nombre;
+    private String NOMBRE;
     @Id
-    private String direccion;
-    private int numeroPuestosAtencion;
+    private String DIRECCION;
+    private int NUMPUESTOSATENCION;
 
     public Oficina() {;}
 
-    public Oficina(String nombre, String direccion, int numeroPuestosAtencion) {
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.numeroPuestosAtencion = numeroPuestosAtencion;
+    public Oficina(String nOMBRE, String dIRECCION, int nUMPUESTOSATENCION) {
+        NOMBRE = nOMBRE;
+        DIRECCION = dIRECCION;
+        NUMPUESTOSATENCION = nUMPUESTOSATENCION;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNOMBRE() {
+        return NOMBRE;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNOMBRE(String nOMBRE) {
+        NOMBRE = nOMBRE;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getDIRECCION() {
+        return DIRECCION;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDIRECCION(String dIRECCION) {
+        DIRECCION = dIRECCION;
     }
 
-    public int getNumeroPuestosAtencion() {
-        return numeroPuestosAtencion;
+    public int getNUMPUESTOSATENCION() {
+        return NUMPUESTOSATENCION;
     }
 
-    public void setNumeroPuestosAtencion(int numeroPuestosAtencion) {
-        this.numeroPuestosAtencion = numeroPuestosAtencion;
+    public void setNUMPUESTOSATENCION(int nUMPUESTOSATENCION) {
+        NUMPUESTOSATENCION = nUMPUESTOSATENCION;
     }
 
     
