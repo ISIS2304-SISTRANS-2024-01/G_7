@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import uniandes.edu.co.parranderos.modelo.Prestamo;
 
@@ -30,5 +32,5 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer>
     @Modifying
     @Transactional
     @Query("UPDATE Prestamo p SET p.estado = 'Cerrado' WHERE p.id = :idPrestamo")
-    void actualizarEstadoPrestamoACerrado(String idPrestamo);
+    void actualizarEstadoPrestamoACerrado(String idPrestamo); 
 } 

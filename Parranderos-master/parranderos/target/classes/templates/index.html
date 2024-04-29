@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Parranderos</title>
+    <title>BancAndes</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
     <div class="container mx-auto w-25">
 
-    <h1>Parranderos</h1>
-    <img th:src="@{/images/logo.png}" width="250">
+    <h1>BancAndes</h1>
+    <img th:src="@{/images/Imagen_BancAndes.jpg}" width="250">
 
     <div>
-        <a th:href="@{/bebedores}" class="btn btn-primary">Bebedores</a>
-        <a th:href="@{/bares}" class="btn btn-primary">Bares</a>
-        <a th:href="@{/bebidas}" class="btn btn-primary">Bebidas</a>
+        <a th:href="@{/prestamoNuevo}" class="btn btn-primary">Crear Prestamo</a>
+        <a th:href="@{/operacionprestamo/{id}/edit/save}" class="btn btn-primary">Operacion Sobre Prestamo</a>
+        <a th:href="@{/prestamo/actualizar-cerrado}" class="btn btn-primary">Actualizar Prestamo a Cerrado</a>
     </div>
     <br/>
 
