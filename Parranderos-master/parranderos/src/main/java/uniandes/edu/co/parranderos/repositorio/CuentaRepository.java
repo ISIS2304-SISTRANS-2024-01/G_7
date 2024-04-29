@@ -1,11 +1,13 @@
 package uniandes.edu.co.parranderos.repositorio;
 
-
+import java.util.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import uniandes.edu.co.parranderos.modelo.Cuenta;
 
@@ -25,4 +27,10 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
         @Query(value = "UPDATE CUENTAS SET ESTADO = 'Cerrada' WHERE NUMEROCUENTA = :NUMEROCUENTA; AND SALDO = 0", nativeQuery = true)
         void actualizarCuenta(@Param("NUMEROCUENTA") Integer NUMEROCUENTA, @Param("ESTADO") String ESTADO,
                         @Param("SALDO") Integer SALDO);
+
+        
+        @Query(value = "SELECT C.SALDO, C.FECHAULTIMATRACCION, C.ESTADO FROM CUENTA C INNERJOIN OPERACIONCUENTA OC ON C.NUMEROCUENTA = OC.NUMEROCUENTA "+//
+                        "WHERE C.NUMEROCUENTA = :NUMEROCUENTA", nativeQuery = true)
+        Collection<Cuenta> extractoBancarioCuenta(@Param("NUMEROCUENTA") Integer NUMEROCUENTA, @Param("MES") Date MES);
+
 }
