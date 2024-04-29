@@ -1,6 +1,8 @@
 package uniandes.edu.co.parranderos.modelo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -8,44 +10,49 @@ import jakarta.persistence.Table;
 @Table(name="PUNTOSATENCION")
 public class PuntosAtencion {
 
-    private String tipo;
+    private String TIPO;
     @Id
-    private String localizacion;
-    private String direccion;
+    private String LOCALIZACION;
+    private String DIRECCION;
+    @GeneratedValue(strategy = GenerationType.AUTO)    
+    private int ID;
 
     public PuntosAtencion() {;}
 
-    public PuntosAtencion(String tipo, String localizacion, String direccion) {
-        this.tipo = tipo;
-        this.localizacion = localizacion;
-        this.direccion = direccion;
+    public PuntosAtencion(String tIPO, String lOCALIZACION, String dIRECCION) {
+        TIPO = tIPO;
+        LOCALIZACION = lOCALIZACION;
+        DIRECCION = dIRECCION;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getTIPO() {
+        return TIPO;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTIPO(String tIPO) {
+        TIPO = tIPO;
     }
 
-    public String getLocalizacion() {
-        return localizacion;
+    public String getLOCALIZACION() {
+        return LOCALIZACION;
     }
 
-    public void setLocalizacion(String localizacion) {
-        this.localizacion = localizacion;
+    public void setLOCALIZACION(String lOCALIZACION) {
+        LOCALIZACION = lOCALIZACION;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getDIRECCION() {
+        return DIRECCION;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDIRECCION(String dIRECCION) {
+        DIRECCION = dIRECCION;
     }
 
-    
+    public int getID() {
+        return ID;
+    }
+
     
     
 
