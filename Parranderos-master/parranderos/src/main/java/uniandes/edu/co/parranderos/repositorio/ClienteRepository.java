@@ -10,6 +10,9 @@ import uniandes.edu.co.parranderos.modelo.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 
+    @Query(value="SELECT * FROM CLIENTE CL INNER JOIN CUENTA CU ON CL.ID = CU.DOCUMENCOIDENTIFICACIONNUMERO WHERE ID=:clienteId", nativeQuery = true)
+    Cliente consultarCliente(@Param("clienteId") int clienteId);
+    
     @Query(value="SELECT * FROM CLIENTE WHERE ID=:clienteId", nativeQuery = true)
     Cliente darCliente(@Param("clienteId") int clienteId);
 
