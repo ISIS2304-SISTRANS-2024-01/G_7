@@ -17,7 +17,7 @@ public interface OperacionCuentaRepository extends JpaRepository<Cuenta, Integer
         @Modifying
         @Transactional
         @Query(value = "INSERT INTO log_operaciones_cuentas (TIPOPAGO, NUMEROCUENTAAFECTADA, NUMEROCUENTA) VALUES ('Retiro', :cuentaOrigen, :cuentaOrigen)", nativeQuery = true)
-        void registrarOperacionRetiro(@Param("monto") double monto, @Param("cuentaOrigen") Integer cuentaOrigen);
+        void registrarOperacionRetiro(@Param("cuentaOrigen") Integer cuentaOrigen);
 
         @Modifying
         @Transactional
@@ -27,7 +27,7 @@ public interface OperacionCuentaRepository extends JpaRepository<Cuenta, Integer
         @Modifying
         @Transactional
         @Query(value = "INSERT INTO log_operaciones_cuentas (TIPOPAGO, NUMEROCUENTAAFECTADA, NUMEROCUENTA) VALUES (:TIPOPAGO, :NUMEROCUENTAAFECTADA, :NUMEROCUENTA)", nativeQuery = true)
-        void consignarOperacionCuenta(@Param("ID") Integer ID, @Param("TIPOPAGO") String TIPOPAGO, @Param("NUMEROCUENTAAFECTADA") Integer NUMEROCUENTAAFECTADA, @Param("NUMEROCUENTA") Integer NUMEROCUENTA);
+        void consignarOperacionCuenta(@Param("TIPOPAGO") String TIPOPAGO, @Param("NUMEROCUENTAAFECTADA") Integer NUMEROCUENTAAFECTADA, @Param("NUMEROCUENTA") Integer NUMEROCUENTA);
 
         @Modifying
         @Transactional

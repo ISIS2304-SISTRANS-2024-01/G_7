@@ -56,7 +56,7 @@ public class OperacionCuentaController
     {
         try 
         {
-            operacionCuentaRepository.consignarOperacionCuenta(monto, "Consignacion", cuentaDestino, cuentaDestino);
+            operacionCuentaRepository.consignarOperacionCuenta("Consignacion", cuentaDestino, cuentaDestino);
             operacionCuentaRepository.sumarSaldoDestino(monto, cuentaDestino);
             redirectAttributes.addFlashAttribute("mensaje", "Consignación realizada exitosamente");
         } 
