@@ -22,4 +22,3 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
     void insertarCliente(@Param("id") int id, @Param("tipoCliente") String tipoCliente);
 
 }
-
