@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de los Andes</title>
+</head>
+<body>
+    <h1>Crear un punto de atencion</h1>
+    <form action="#" th:action="@{/puntos/new/save}" method="post">
+        <label>TIPO</label>
+        <select name="TIPO" id="TIPO" required>
+            <option value="Punto Atencion Personalizada">Punto Atencion Personalizada</option>
+            <option value="Cajero Automatico">Cajero Automatico</option>
+            <option value="Digital">Digital</option>
+        </select>
+
+        <label>LOCALIZACION</label>
+        <input type="text" id="LOCALIZACION" name="LOCALIZACION" required />
+
+        <input type="submit" value="Crear">
+    </form>
+</body>
+</html>
