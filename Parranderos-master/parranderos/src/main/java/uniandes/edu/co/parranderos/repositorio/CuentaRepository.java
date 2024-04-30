@@ -10,19 +10,28 @@ import org.springframework.transaction.annotation.Transactional;
 import uniandes.edu.co.parranderos.modelo.Cuenta;
 
 import java.sql.Date;
+import java.util.Collection;
 
 
 public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
 
-        @Modifying
-        @Transactional
-        @Query(value = "INSERT INTO CUENTAS (NUMEROCUENTA, TIPO, SALDO, FECHAULTIMATRANSACCION, ESTADO, DOCUMENTOIDENTIFICACIONNUMERO) VALUES ( :NUMEROCUENTA, :TIPO, :SALDO, :FECHAULTIMATRANSACCION, :ESTADO, :DOCUMENTOIDENTIFICACIONNUMERO)", nativeQuery = true)
-        void insertarCuenta(@Param("NUMEROCUENTA") Integer NUMEROCUENTA, @Param("TIPO") String TIPO, @Param("SALDO") Integer SALDO,
-                        @Param("FECHAULTIMATRANSACCION") Date FECHAULTIMATRANSACCION, @Param("ESTADO") String ESTADO, @Param("DOCUMENTOIDENTIFICACIONNUMERO") Integer DOCUMENTOIDENTIDICACIONNUMERO);
+        @Query(value="SELECT * FROM CUENTA", nativeQuery = true)
+        Collection<Cuenta> darCuentas();
+
+        @Query(value="SELECT * FROM CUENTA WHERE TIPO=:TIPO AND (SALDO BETWEEN :SALDOINICIAL AND :SALDOFINAL) AND DOCUMENTOIDENTIFICACIONNUMERO=:DOCUMENTOIDENTIFICACIONNUMERO", nativeQuery = true)
+        Cuenta darCuentaRFC1(@Param("TIPO") String TIPO, @Param("SALDOINICIAL") Integer SALDOINICIAL, @Param("SALDOFINAL") Integer SALDOFINAL, @Param("DOCUMENTOIDENTIFICACIONNUMERO") Integer DOCUMENTOIDENTIFICACIONNUMERO);
 
         @Modifying
         @Transactional
-        @Query(value = "UPDATE CUENTAS SET ESTADO = 'Cerrada' WHERE NUMEROCUENTA = :NUMEROCUENTA; AND SALDO = 0", nativeQuery = true)
+        @Query(value = "INSERT INTO CUENTA (NUMEROCUENTA, TIPO, SALDO, FECHAULTIMATRANSACCION, ESTADO, DOCUMENTOIDENTIFICACIONNUMERO) VALUES ( :NUMEROCUENTA, :TIPO, :SALDO, :FECHAULTIMATRANSACCION, :ESTADO, :DOCUMENTOIDENTIFICACIONNUMERO)", nativeQuery = true)
+        void insertarCuenta(@Param("NUMEROCUENTA") Integer NUMEROCUENTA, @Param("TIPO") String TIPO, @Param("SALDO") Integer SALDO,
+                        @Param("FECHAULTIMATRANSACCION") Date FECHAULTIMATRANSACCION, @Param("ESTADO") String ESTADO, @Param("DOCUMENTOIDENTIFICACIONNUMERO") Integer DOCUMENTOIDENTIFICACIONNUMERO);
+
+        /* 
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE CUENTA SET ESTADO = 'Cerrada' WHERE NUMEROCUENTA = :NUMEROCUENTA; AND SALDO = 0", nativeQuery = true)
         void actualizarCuenta(@Param("NUMEROCUENTA") Integer NUMEROCUENTA, @Param("ESTADO") String ESTADO,
                         @Param("SALDO") Integer SALDO);
+        */
 }

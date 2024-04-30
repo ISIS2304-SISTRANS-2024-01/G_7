@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios | Banco de los Andes</title>
+</head>
+<body>
+    <h1>Crear un usuario</h1>
+    <form action="#" th:action="@{/usuarios/new/save}" method="post">
+        <label>Login</label>
+        <input type="text" id="LOGIN" name="LOGIN" required />
+
+        <label>Palabra clave</label>
+        <input type="text" id="PALABRACLAVE" name="PALABRACLAVE" required />
+
+        <label>Rol</label>
+        <select name="ROL" id="ROL" required>
+            <option value="Cliente">Cliente</option>
+            <option value="Cajero">Cajero</option>
+            <option value="Gerente de Oficina">Gerente de Oficina</option>
+            <option value="Gerente General">Gerente General</option>
+            <option value="Administrador">Administrador</option>
+        </select>
+
+        <label>DOCUMENTOIDENTIFICACIONTIPO</label>
+        <input type="text" id="DOCUMENTOIDENTIFICACIONTIPO" name="DOCUMENTOIDENTIFICACIONTIPO" required />
+
+        <label>DOCUMENTOIDENTIFICACIONNUMERO</label>
+        <input type="text" id="DOCUMENTOIDENTIFICACIONNUMERO" name="DOCUMENTOIDENTIFICACIONNUMERO" required />
+
+        <label>NOMBRE</label>
+        <input type="text" id="NOMBRE" name="NOMBRE" required />
+
+        <label>NACIONALIDAD</label>
+        <input type="text" id="NACIONALIDAD" name="NACIONALIDAD" required />
+        
+        <label>DIRECCIONFISICA</label>
+        <input type="text" id="DIRECCIONFISICA" name="DIRECCIONFISICA" required />
+        
+        <label>DIRECCIONELECTRONICA</label>
+        <input type="text" id="DIRECCIONELECTRONICA" name="DIRECCIONELECTRONICA" required />
+        
+        <label>TELEFONO</label>
+        <input type="text" id="TELEFONO" name="TELEFONO" required />
+        
+        <label>CIUDAD</label>
+        <input type="text" id="CIUDAD" name="CIUDAD" required />
+        
+        <label>DEPARTAMENTO</label>
+        <input type="text" id="DEPARTAMENTO" name="DEPARTAMENTO" required />
+        
+        <label>CODIGOPOSTAL</label>
+        <input type="text" id="CODIGOPOSTAL" name="CODIGOPOSTAL" required />
+
+        <label>Tipo de persona (si es cliente)</label>
+        <select name="TIPOCLIENTE" id="TIPOCLIENTE">
+            <option value="Natural" th:field="*{usuarioCliente.TIPOCLIENTE}">Natural</option>
+            <option value="Juridico" th:field="*{usuarioCliente.TIPOCLIENTE}">Juridico</option>
+        </select>
+
+        <label>ID de empleado (si es empleado)</label>
+        <input type="text" id="IDEMPLEADO" name="IDEMPLEADO" th:field="*{usuarioEmpleado.IDEMPLEADO}"/>
+
+        <input type="submit" value="Crear">
+    </form>
+</body>
+</html>
