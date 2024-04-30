@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Banco de los Andes</title>
+    <script th:src="@{/css/jquery.min.js}"></script>
+    <script th:src="@{/css/bootstrap.min.js}"></script>
+</head>
+<body>
+    <h1>Consultar cuentas</h1>
+
+    <form th:action="@{cuentas}" method="get">
+        <label>TIPO</label>
+        <input type="text" name="TIPO" id="TIPO"/>
+        <label>SALDO INCIAL</label>
+        <input type="text" name="SALDOINICIAL" id="SALDOINICIAL"/>
+        <label>SALDO FINAL</label>
+        <input type="text" name="SALDOFINAL" id="SALDOFINAL"/>
+        <label>DOCUMENTOIDENTIFICACIONNUMERO</label>
+        <input type="text" name="DOCUMENTOIDENTIFICACIONNUMERO" id="DOCUMENTOIDENTIFICACIONNUMERO">
+        <button type="submit">Filtrar</button>
+    </form>
+
+    <table class="talbe table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Numero de cuenta</th>
+                <th>Tipo</th>
+                <th>Saldo</th>
+                <th>Fecha de la ultima transaccion</th>
+                <th>Numero de Estado</th>
+                <th>Documento del propietario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cuenta : ${cuentas}">
+                <td th:text="${cuenta.NUMEROCUENTA}"></td>
+                <td th:text="${cuenta.TIPO}"></td>
+                <td th:text="${cuenta.SALDO}"></td>
+                <td th:text="${cuenta.FECHAULTIMATRANSACCION}"></td>
+                <td th:text="${cuenta.ESTADO}"></td>
+                <td th:text="${cuenta.DOCUMENTOIDENTIFICACIONNUMERO}"></td>
+            </tr>
+    </table>
+</body>
+</html>
