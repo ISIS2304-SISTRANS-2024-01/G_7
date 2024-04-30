@@ -7,6 +7,13 @@
 <body>
     <div class="container mx-auto">
 
+    <h1>BancAndes</h1>
+    <img th:src="@{/images/Imagen_BancAndes.jpg}" width="250">
+
+    <div>
+        <a th:href="@{/operacionprestamo/new}" class="btn btn-primary">Crear Prestamo</a>
+        <a th:href="@{/operacionprestamo/{id}/edit/save}" class="btn btn-primary">Operacion Sobre Prestamo</a>
+        <a th:href="@{/prestamo/actualizar-cerrado}" class="btn btn-primary">Actualizar Prestamo a Cerrado</a>
     <h1>Banco de los Andes</h1>
 
     <div>
