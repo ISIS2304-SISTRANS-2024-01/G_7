@@ -16,15 +16,38 @@ public interface OperacionCuentaRepository extends JpaRepository<Cuenta, Integer
 
         @Modifying
         @Transactional
-        @Query(value = "INSERT INTO operacioncuenta (ID, TIPOPAGO, NUMEROCUENTAAFECTADA, NUMEROCUENTA) VALUES (:ID, :TIPOPAGO, :NUMEROCUENTAAFECTADA, :NUMEROCUENTA);", nativeQuery = true)
-        void insertarOperacionCuenta(@Param("ID") Integer ID, @Param("TIPOPAGO") String TIPOPAGO, @Param("NUMEROCUENTAAFECTADA") Integer NUMEROCUENTAAFECTADA, @Param("NUMEROCUENTA") Integer NUMEROCUENTA);
+        @Query(value = "INSERT INTO log_operaciones_cuentas (TIPOPAGO, NUMEROCUENTAAFECTADA, NUMEROCUENTA) VALUES ('Retiro', :cuentaOrigen, :cuentaOrigen)", nativeQuery = true)
+        void registrarOperacionRetiro(@Param("monto") double monto, @Param("cuentaOrigen") Integer cuentaOrigen);
 
         @Modifying
         @Transactional
-        default void retirarDinero(Integer ID, String tipoPago, Integer numeroCuentaAfectada, Integer numeroCuenta) 
-        {
-                insertarOperacionCuenta(ID, tipoPago, numeroCuentaAfectada, numeroCuenta);
-        }
+        @Query(value = "UPDATE cuenta SET saldo = saldo - :monto WHERE numero = :cuentaOrigen", nativeQuery = true)
+        void retirarDinero(@Param("monto") double monto, @Param("cuentaOrigen") Integer cuentaOrigen);
+
+        @Modifying
+        @Transactional
+        @Query(value = "INSERT INTO log_operaciones_cuentas (TIPOPAGO, NUMEROCUENTAAFECTADA, NUMEROCUENTA) VALUES (:TIPOPAGO, :NUMEROCUENTAAFECTADA, :NUMEROCUENTA)", nativeQuery = true)
+        void consignarOperacionCuenta(@Param("ID") Integer ID, @Param("TIPOPAGO") String TIPOPAGO, @Param("NUMEROCUENTAAFECTADA") Integer NUMEROCUENTAAFECTADA, @Param("NUMEROCUENTA") Integer NUMEROCUENTA);
+
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE cuenta SET saldo = saldo + :monto WHERE numero = :numeroCuenta", nativeQuery = true)
+        void consignar(@Param("monto") double monto, @Param("numeroCuenta") Integer numeroCuenta);
+
+        @Modifying
+        @Transactional
+        @Query(value = "INSERT INTO log_operaciones_cuentas (TIPOPAGO, NUMEROCUENTAAFECTADA, NUMEROCUENTA) VALUES ('Transferencia', :cuentaDestino, :cuentaOrigen)", nativeQuery = true)
+        void registrarOperacionTransferencia(@Param("cuentaOrigen") Integer cuentaOrigen, @Param("cuentaDestino") Integer cuentaDestino);
+
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE cuenta SET saldo = saldo - :monto WHERE numero = :cuentaOrigen", nativeQuery = true)
+        void restarSaldoOrigen(@Param("monto") double monto, @Param("cuentaOrigen") Integer cuentaOrigen);
+
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE cuenta SET saldo = saldo + :monto WHERE numero = :cuentaDestino", nativeQuery = true)
+        void sumarSaldoDestino(@Param("monto") double monto, @Param("cuentaDestino") Integer cuentaDestino);
 
 
 }
