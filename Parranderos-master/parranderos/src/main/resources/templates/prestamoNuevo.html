@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Prestamo</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+
+<body>
+    <h1>Crear un Prestamo</h1>
+    <form action="#" th:action="@{/prestamo/new/save}" method="post">
+
+        <label>idprestamo</label>
+        <input type="text" id="idprestamo" name="idprestamo" required />
+
+        <label>tipoprestamo</label>
+        <input type="text" id="tipoprestamo" name="tipoprestamo" required />
+
+        <label>estado</label>
+        <input type="text" id="estado" name="estado" required />
+
+        <label>monto</label>
+        <input type="text" id="monto" name="monto" required />
+
+        <label>intereses</label>
+        <input type="text" id="intereses" name="intereses" required />
+
+        <label>mespago</label>
+        <input type="text" id="mespago" name="mespago" required />
+
+        <label>valorcuota</label>
+        <input type="text" id="valorcuota" name="valorcuota" required />
+
+        
+        <label>id</label>
+        <input type="text" id="id" name="id" required />
+        
+        <input type="submit" value="Crear">
+        
+    </form>
+</body>
+</html>
+
+
+
+
+
+{% comment %} 
+<label>Cliente</label>
+<select id="cliente" name="cliente" required>
+    <option th:each="cliente : ${clientes}" th:value="${cliente}" th:text="${cliente.nombre}"></option>
+</select> {% endcomment %}

@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Parranderos</title>
+    <title>Banco de los Andes</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-    <div class="container mx-auto w-25">
+    <div class="container mx-auto">
 
-    <h1>Parranderos</h1>
-    <img th:src="@{/images/logo.png}" width="250">
+    <h1>BancAndes</h1>
+    <img th:src="@{/images/Imagen_BancAndes.jpg}" width="250">
 
     <div>
-        <a th:href="@{/bebedores}" class="btn btn-primary">Bebedores</a>
-        <a th:href="@{/bares}" class="btn btn-primary">Bares</a>
-        <a th:href="@{/bebidas}" class="btn btn-primary">Bebidas</a>
+        <a th:href="@{/operacionprestamo/new}" class="btn btn-primary">Crear Prestamo</a>
+        <a th:href="@{/operacionprestamo/{id}/edit/save}" class="btn btn-primary">Operacion Sobre Prestamo</a>
+        <a th:href="@{/prestamo/actualizar-cerrado}" class="btn btn-primary">Actualizar Prestamo a Cerrado</a>
+    <h1>Banco de los Andes</h1>
+
+    <div>
+        <a th:href="@{/usuarios/new}" class="btn btn-primary">Crear usuario</a>
+        <a th:href="@{/oficinas/new}" class="btn btn-primary">Crear oficina</a>
+        <a th:href="@{/puntos/new}" class="btn btn-primary">Crear punto de atencion</a>
+        <a th:href="@{/puntos/delete}" class="btn btn-primary">Borrar punto de atencion</a>
+        <a th:href="@{/cuentas}" class="btn btn-primary">Consultar cuentas</a>
     </div>
     <br/>
 
