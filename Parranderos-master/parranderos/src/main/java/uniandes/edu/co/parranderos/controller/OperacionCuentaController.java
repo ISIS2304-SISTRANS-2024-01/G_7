@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import jakarta.transaction.Transactional;
 import uniandes.edu.co.parranderos.modelo.Cuenta;
 import uniandes.edu.co.parranderos.modelo.OperacionCuenta;
 import uniandes.edu.co.parranderos.repositorio.CuentaRepository;
@@ -31,61 +32,62 @@ public class OperacionCuentaController
         return "OperacionCuenta nueva";
     }
 
-    
-    @PostMapping("/operacionCuenta/retirar")
-    public String retirarDinero(@RequestParam Integer id, @RequestParam Integer monto, RedirectAttributes redirectAttributes) 
+    @PostMapping("/retirar")
+    @Transactional
+    public String retirarDinero(@RequestParam("monto") Integer monto, @RequestParam("cuentaOrigen") Integer cuentaOrigen, RedirectAttributes redirectAttributes) 
     {
-        OperacionCuenta operacionCuenta = operacionCuentaRepository.darOperacionPrestamo(id);
-
         try 
         {
-            Cuenta cuenta = cuentaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("La cuenta con el número especificado no existe"));
-
-            if (cuenta.getSALDO() >= monto) 
-            {
-                cuenta.setSALDO(cuenta.setSALDO() - monto);
-                cuentaRepository.save(cuenta);
-
-                operacionCuentaRepository.insertarOperacionCuenta(id, operacionCuenta.getTIPOPAGO(), operacionCuenta.getNUMEROCUENTAAFECTADA(), operacionCuenta.getNUMEROCUENTA());
-
-                redirectAttributes.addFlashAttribute("successMessage", "Retiro exitoso");
-            } 
-            else 
-            {
-                redirectAttributes.addFlashAttribute("errorMessage", "Saldo insuficiente para realizar el retiro");
-            }
+            operacionCuentaRepository.restarSaldoOrigen(monto, cuentaOrigen);
+            redirectAttributes.addFlashAttribute("mensaje", "Retiro realizado exitosamente");
         } 
         catch (Exception e) 
         {
-            redirectAttributes.addFlashAttribute("errorMessage", "Error al procesar el retiro: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("mensaje", "Error al realizar el retiro: " + e.getMessage());
+            return "redirect:/operacionCuenta/nueva";
         }
+
         return "redirect:/operacionCuenta/nueva";
     }
 
+    @PostMapping("/consignar")
+    @Transactional
+    public String consignarDinero(@RequestParam("monto") Integer monto, @RequestParam("cuentaDestino") Integer cuentaDestino, RedirectAttributes redirectAttributes) 
+    {
+        try 
+        {
+            operacionCuentaRepository.consignarOperacionCuenta(monto, "Consignacion", cuentaDestino, cuentaDestino);
+            operacionCuentaRepository.sumarSaldoDestino(monto, cuentaDestino);
+            redirectAttributes.addFlashAttribute("mensaje", "Consignación realizada exitosamente");
+        } 
+        catch (Exception e) 
+        {
+            redirectAttributes.addFlashAttribute("mensaje", "Error al realizar la consignación: " + e.getMessage());
+            return "redirect:/operacionCuenta/nueva";
+        }
 
-    // @PostMapping("/operacionCuenta/consignar")
-    // public String consignarDinero(@RequestParam Integer id, @RequestParam Double monto, RedirectAttributes redirectAttributes) 
-    // {
-    //     OperacionCuenta operacionCuenta = operacionCuentaRepository.darOperacionPrestamo(id);
+        return "redirect:/operacionCuenta/nueva";
+    }
 
-    //     try 
-    //     {
-    //         Cuenta cuenta = cuentaRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("La cuenta con el número especificado no existe"));
+    @PostMapping("/transferir")
+    @Transactional
+    public String transferirDinero(@RequestParam("monto") Integer monto, @RequestParam("cuentaOrigen") Integer cuentaOrigen, @RequestParam("cuentaDestino") Integer cuentaDestino, RedirectAttributes redirectAttributes) {
+        try 
+        {
+            operacionCuentaRepository.restarSaldoOrigen(monto, cuentaOrigen);
+            operacionCuentaRepository.sumarSaldoDestino(monto, cuentaDestino);
+            redirectAttributes.addFlashAttribute("mensaje", "Transferencia realizada exitosamente");
+        } 
+        catch (Exception e) 
+        {
+            redirectAttributes.addFlashAttribute("mensaje", "Error al realizar la transferencia: " + e.getMessage());
+            return "redirect:/operacionCuenta/nueva";
+        }
 
-    //         cuenta.setSaldo(cuenta.setSALDO() + monto);
-    //         cuentaRepository.save(cuenta);
+        return "redirect:/operacionCuenta/nueva";
 
-    //     // Registrar la operación de consignación en el log
-    //         operacionCuentaRepository.insertarOperacionCuenta(/* Parámetros necesarios */);
+        // revisar redirecciones
+    }
 
-    //         redirectAttributes.addFlashAttribute("successMessage", "Consignación exitosa");
-    // } 
-    // catch (Exception e) 
-    // {
-    //     redirectAttributes.addFlashAttribute("errorMessage", "Error al procesar la consignación: " + e.getMessage());
-    // }
-
-    // return "redirect:/operacionCuenta/nueva";
-}
 
 }
