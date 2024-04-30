@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import uniandes.edu.co.parranderos.modelo.Cliente;
 import uniandes.edu.co.parranderos.modelo.OperacionPrestamo;
 import uniandes.edu.co.parranderos.modelo.Prestamo;
 
@@ -17,7 +18,7 @@ public interface OperacionPrestamoRepository extends JpaRepository<OperacionPres
     Collection<OperacionPrestamo> darOperacionesPrestamos();
 
     @Query(value = "SELECT * FROM operacionprestamo WHERE id = :id", nativeQuery = true)
-    OperacionPrestamo darOperacionPrestamo(@Param("id") Integer id);
+    OperacionPrestamo darOperacionPrestamo(@Param("id") Cliente id);
     
 
     @Modifying
@@ -33,6 +34,6 @@ public interface OperacionPrestamoRepository extends JpaRepository<OperacionPres
     @Modifying
     @Transactional
     @Query(value = "UPDATE operacionprestamo SET id = :id, numeroprestamo = :numeroprestamo, idprestamo = :idprestamo, tipoprestamo = :tipoprestamo WHERE id = :idParam", nativeQuery = true)
-    void actualizarPrestamo(@Param("id") Integer id, @Param("numeroprestamo") String numeroprestamo, @Param("idprestamo") Prestamo prestamo, @Param("tipoprestamo") Prestamo prestamo2, @Param("idParam") Integer integer);
+    void actualizarPrestamo(@Param("id") Cliente id, @Param("numeroprestamo") String numeroprestamo, @Param("idprestamo") Prestamo prestamo, @Param("tipoprestamo") Prestamo prestamo2, @Param("idParam") Integer integer);
 
 }
