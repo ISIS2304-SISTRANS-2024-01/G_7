@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -56,5 +57,18 @@ public class CuentaController {
         cuentaRepository.insertarCuenta(cuenta.getNUMEROCUENTA(), cuenta.getTIPO(), cuenta.getSALDO(), cuenta.getESTADO(), cuenta.getDOCUMENTOIDENTIFICACIONNUMERO());
         return "redirect:/cuenta/new";
     }
+    
+    @GetMapping("/cuenta/{NUMEROCUENTA}/{SALDO}/edit/save")
+    public String cuentaConsignarGet(@PathVariable("NUMEROCUENTA") String NUMEROCUENTA, @PathVariable("SALDO") Integer SALDONUEVO)
+    {
+        cuentaRepository.consignarACuenta(NUMEROCUENTA, SALDONUEVO);
+        return "redirect:/";
+    }
 
+    @PostMapping("/cuenta/{NUMEROCUENTA}/{SALDO}/edit/save")
+    public String cuentaConsignar(@PathVariable("NUMEROCUENTA") String NUMEROCUENTA, @PathVariable("SALDO") Integer SALDONUEVO)
+    {
+        cuentaRepository.consignarACuenta(NUMEROCUENTA, SALDONUEVO);
+        return "redirect:/";
+    }
 }

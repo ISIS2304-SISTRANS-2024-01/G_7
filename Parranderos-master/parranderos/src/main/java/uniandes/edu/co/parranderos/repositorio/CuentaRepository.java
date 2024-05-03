@@ -36,5 +36,8 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
                         @Param("SALDO") Integer SALDO);
         */
 
-        
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE cuenta SET SALDO = SALDO + :SALDONUEVO WHERE NUMEROCUENTA = :NUMEROCUENTA", nativeQuery = true)
+        void consignarACuenta(@Param("NUMEROCUENTA") String NUMEROCUENTA, @Param("SALDONUEVO") Integer SALDONUEVO);
 }

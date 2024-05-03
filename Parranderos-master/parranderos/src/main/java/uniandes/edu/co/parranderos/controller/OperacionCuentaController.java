@@ -118,4 +118,12 @@ public class OperacionCuentaController
         return "confirmacionCuentaCerrada";
     }
 
+    @GetMapping("/operacioncuenta/consignar")
+    public String OperacionCuentaConsignar(Model model)
+    {
+        model.addAttribute("numerocuenta", new OperacionCuenta());
+        return "operacionCuentaConsignar";
+    }
+
+
 }
