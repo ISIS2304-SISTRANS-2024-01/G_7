@@ -42,15 +42,15 @@ public class OperacionPrestamoController
     @GetMapping("/operacionprestamo/closed")
     public String OperacionPrestamoCerrar(Model model)
     {
-        model.addAttribute("numeroprestamo", new OperacionPrestamo());
+        model.addAttribute("idprestamo", new OperacionPrestamo());
         return "operacionPrestamoCerrado";
     }
 
-    @PostMapping("/operacionprestamo/{numeroprestamo}/close")
-    public String operacionCerrar(@PathVariable("numeroprestamo") String numeroprestamo)
+    @PostMapping("/operacionprestamo/{idprestamo}/close")
+    public String operacionCerrar(@PathVariable("idprestamo") String idprestamo)
     {
-        operacionPrestamoRepository.actualizarEstadoPrestamoACerrado(numeroprestamo);
-        return "redirect:/operacionprestamo/new";
+        operacionPrestamoRepository.actualizarEstadoPrestamoACerrado(idprestamo);
+        return "confirmacionPrestamoCerrado";
     }
 
     @GetMapping("/operacionprestamo/confirmacion")
