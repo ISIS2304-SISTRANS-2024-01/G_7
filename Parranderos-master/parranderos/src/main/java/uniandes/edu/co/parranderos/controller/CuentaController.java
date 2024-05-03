@@ -38,6 +38,8 @@ public class CuentaController {
     public String cuentaForm(Model model)
     {
         model.addAttribute("cuenta", new Cuenta());
+        model.addAttribute("cuentaOrigen", new Cuenta());
+        model.addAttribute("cuentaDestino", new Cuenta());
         return "cuentaNueva";
     }
 
@@ -71,4 +73,47 @@ public class CuentaController {
         cuentaRepository.consignarACuenta(NUMEROCUENTA, SALDONUEVO);
         return "redirect:/";
     }
+
+    @GetMapping("/cuenta/{NUMEROCUENTA}/{SALDO}/edit/save/retiro")
+    public String cuentaRetirarGet(@PathVariable("NUMEROCUENTA") String NUMEROCUENTA, @PathVariable("SALDO") Integer SALDONUEVO)
+    {
+        cuentaRepository.retirarDeCuenta(NUMEROCUENTA, SALDONUEVO);
+        return "redirect:/";
+    }
+    
+    @PostMapping("/cuenta/{NUMEROCUENTA}/{SALDO}/edit/save/retiro")
+    public String cuentaRetirar(@PathVariable("NUMEROCUENTA") String NUMEROCUENTA, @PathVariable("SALDO") Integer SALDONUEVO)
+    {
+        cuentaRepository.retirarDeCuenta(NUMEROCUENTA, SALDONUEVO);
+        return "redirect:/";
+    }
+
+    @GetMapping("/cuenta/{NUMEROCUENTA}/{SALDO}/{NUMEROCUENTAD}/edit/save/transferir")
+    public String cuentaTransferirDesdeGet(@PathVariable("NUMEROCUENTA") String NUMEROCUENTA, @PathVariable("SALDO") Integer SALDONUEVO)
+    {
+        cuentaRepository.trasferirDeCuenta(NUMEROCUENTA, SALDONUEVO);
+        return "redirect:/";
+    }
+    
+    @PostMapping("/cuenta/{NUMEROCUENTA}/{SALDO}/{NUMEROCUENTAD}/edit/save/transferir")
+    public String cuentaTransferirDesde(@PathVariable("NUMEROCUENTA") String NUMEROCUENTA, @PathVariable("SALDO") Integer SALDONUEVO)
+    {
+        cuentaRepository.trasferirDeCuenta(NUMEROCUENTA, SALDONUEVO);
+        return "redirect:/";
+    }
+
+    @GetMapping("/cuenta/{NUMEROCUENTA}/{SALDO}/{NUMEROCUENTAD}/edit/save/transferir/hacia")
+    public String cuentaTransferirHaciaGet(@PathVariable("NUMEROCUENTAD") String NUMEROCUENTAD, @PathVariable("SALDO") Integer SALDONUEVO)
+    {
+        cuentaRepository.trasferirHaciaCuenta(NUMEROCUENTAD, SALDONUEVO);
+        return "redirect:/";
+    }
+    
+    @PostMapping("/cuenta/{NUMEROCUENTA}/{SALDO}/{NUMEROCUENTAD}/edit/save/transferir/hacia")
+    public String cuentaTransferirHacia(@PathVariable("NUMEROCUENTAD") String NUMEROCUENTAD, @PathVariable("SALDO") Integer SALDONUEVO)
+    {
+        cuentaRepository.trasferirHaciaCuenta(NUMEROCUENTAD, SALDONUEVO);
+        return "redirect:/";
+    }
+
 }

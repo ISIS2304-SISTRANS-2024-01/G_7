@@ -149,5 +149,20 @@ public class OperacionCuentaController
         return "operacionCuentaConsignar";
     }
 
+    @GetMapping("/operacioncuenta/retirar")
+    public String OperacionCuentaRetirar(Model model)
+    {
+        model.addAttribute("numerocuenta", new OperacionCuenta());
+        return "operacionCuentaRetirar";
+    }
+
+    @GetMapping("/operacioncuenta/transferir")
+    public String OperacionCuentaTransferir(Model model)
+    {
+        model.addAttribute("numerocuenta", new OperacionCuenta());
+        return "operacionCuentaTransferir";
+    }
+
+
 
 }

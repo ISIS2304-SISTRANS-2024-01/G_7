@@ -40,4 +40,19 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
         @Transactional
         @Query(value = "UPDATE cuenta SET SALDO = SALDO + :SALDONUEVO WHERE NUMEROCUENTA = :NUMEROCUENTA", nativeQuery = true)
         void consignarACuenta(@Param("NUMEROCUENTA") String NUMEROCUENTA, @Param("SALDONUEVO") Integer SALDONUEVO);
+
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE cuenta SET SALDO = SALDO - :SALDONUEVO WHERE NUMEROCUENTA = :NUMEROCUENTA", nativeQuery = true)
+        void retirarDeCuenta(@Param("NUMEROCUENTA") String NUMEROCUENTA, @Param("SALDONUEVO") Integer SALDONUEVO);
+
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE cuenta SET SALDO = SALDO - :SALDONUEVO WHERE NUMEROCUENTA = :NUMEROCUENTA", nativeQuery = true)
+        void trasferirDeCuenta(@Param("NUMEROCUENTA") String NUMEROCUENTA, @Param("SALDONUEVO") Integer SALDONUEVO);
+
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE cuenta SET SALDO = SALDO + :SALDONUEVO WHERE NUMEROCUENTA = :NUMEROCUENTAD", nativeQuery = true)
+        void trasferirHaciaCuenta(@Param("NUMEROCUENTAD") String NUMEROCUENTAD, @Param("SALDONUEVO") Integer SALDONUEVO);
 }
