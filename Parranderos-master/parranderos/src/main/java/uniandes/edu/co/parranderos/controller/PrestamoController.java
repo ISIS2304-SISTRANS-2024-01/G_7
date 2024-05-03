@@ -1,5 +1,8 @@
 package uniandes.edu.co.parranderos.controller;
 
+import java.math.BigDecimal;
+
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +25,9 @@ public class PrestamoController
     @Autowired
     private PrestamoRepository prestamoRepository;
 
-    //PARA SELECT
+    // PARA SELECT
     @GetMapping("/prestamo")
-    public String prestamo(Model model )
+    public String prestamo(Model model) 
     {
         model.addAttribute("prestamo", prestamoRepository.darPrestamos());
         return "prestamo";
@@ -32,17 +35,19 @@ public class PrestamoController
     }
 
     @GetMapping("/prestamo/new")
-    public String prestamoForm(Model model)
+    public String prestamoForm(Model model) 
     {
         model.addAttribute("prestamo", new Prestamo());
         return "prestamoNuevo";
     }
 
-    //PARA INSERT
+    // PARA INSERT
     @PostMapping("/prestamo/new/save")
-    public String prestamoGuardar(@ModelAttribute Prestamo prestamo, @ModelAttribute PrestamoPK prestamoPK)
+    public String prestamoGuardar(@ModelAttribute Prestamo prestamo, @ModelAttribute PrestamoPK prestamoPK) 
     {
-        prestamoRepository.insertarPrestamo(prestamoPK.getIdprestamo(), prestamoPK.getTipoprestamo(), prestamo.getEstado(), prestamo.getMonto(), prestamo.getIntereses(), prestamo.getNumcuotas(), prestamo.getMespago(), prestamo.getValorcuota());
+        prestamoRepository.insertarPrestamo(prestamoPK.getIdprestamo(), prestamoPK.getTipoprestamo(),
+                prestamo.getEstado(), prestamo.getMonto(), prestamo.getIntereses(), prestamo.getNumcuotas(),
+                prestamo.getMespago(), prestamo.getValorcuota());
         return "redirect:/prestamo/new";
     }
 
@@ -55,7 +60,7 @@ public class PrestamoController
     }
 
     @GetMapping("/operacionprestamo/{numeroprestamo}/{monto}/edit/save")
-    public String PrestamoPagarCuotaGet(@PathVariable("numeroprestamo") String numeroprestamo, @PathVariable("monto") Integer montoNuevo)
+    public String PrestamoPagarCuotaGet(@PathVariable("numeroprestamo") String numeroprestamo, @PathVariable("monto") Integer montoNuevo) 
     {
         prestamoRepository.actualizarPrestamoPagarCuota(numeroprestamo, montoNuevo);
         return "redirect:/";
@@ -65,6 +70,7 @@ public class PrestamoController
     public String PrestamoPagarCuota(@PathVariable("numeroprestamo") String numeroprestamo, @PathVariable("monto") Integer montoNuevo)
     {
         prestamoRepository.actualizarPrestamoPagarCuota(numeroprestamo, montoNuevo);
-        return "redirect:/";
+        return "confirmacionPagoPrestamo";
     }
-}    
+
+}

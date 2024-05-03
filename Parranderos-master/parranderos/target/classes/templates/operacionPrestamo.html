@@ -11,34 +11,29 @@
 <body>
 
     <h1> Realizar Pago de Cuota</h1>
-    <form action="@{/prestamo/{numeroprestamo}/{monto}/edit/save}" method="post">
+    <form id="paymentForm" action="@{/prestamo/{idprestamo}/{monto}/edit/save}" method="post">
 
-        <label for="numeroprestamo">ID del Préstamo:</label>
-        <input type="text" id="numeroprestamo" name="numeroprestamo" required>
+        <label for="idprestamo">ID del Préstamo:</label>
+        <input type="text" id="idprestamo" name="idprestamo" required>
     
-        <label>Monto del Pago</label>
+        <label for="monto">Monto del Pago:</label>
         <input type="text" id="monto" name="monto" required />
+
+        <button type="submit">Realizar Pago</button>
     </form>
 
-    <a th:href="@{/prestamo/{numeroprestamo}/{monto}/edit/save(numeroprestamo=${numeroprestamo},monto=${monto})}">
-        Realizar Pago
-    </a>
-  
-
     <script>
-        var numprestamoInput = document.getElementById('numeroprestamo');
+        var paymentForm = document.getElementById('paymentForm');
+        var idprestamoInput = document.getElementById('idprestamo');
         var montoInput = document.getElementById('monto');
-        var deleteLink = document.getElementById('deleteLink');
 
-        numprestamoInput.addEventListener('input', function()
+        paymentForm.addEventListener('submit', function(event) 
         {
-            var prestamoValue = numprestamoInput.value;
-            var montoValue = montoInput.value;
+            var idprestamo = idprestamoInput.value;
+            var monto = montoInput.value;
 
-            var deleteUrl = '/operacionprestamo/' + prestamoValue + montoValue +'/edit/save';
-            deleteLink.setAttribute('href', deleteUrl);
+            paymentForm.action = '/prestamo/' + idprestamo + '/' + monto + '/edit/save';
         });
-
     </script>
 
 </body>
