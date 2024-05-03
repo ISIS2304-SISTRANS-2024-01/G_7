@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear cuenta</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+    <h1>Crear una Cuenta</h1>
+    <form action="#" th:action="@{/cuenta/new/save}" method="post">
+
+        <label>Numero Cuenta</label>
+        <input type="text" id="NUMEROCUENTA" name="NUMEROCUENTA" required />
+
+        <label>Tipo de Cuenta</label>
+        <input type="text" id="TIPO" name="TIPO" required />
+
+        <label>Saldo</label>
+        <input type="text" id="SALDO" name="SALDO" required />
+
+        <label>Fecha Ultima Transaccion</label>
+        <input type="text" required />
+
+        <label>Estado</label>
+        <input type="text" id="ESTADO" name="ESTADO" required />
+
+        <label>Documento Identificacion Numero</label>
+        <input type="text" id="DOCUMENTOIDENTIFICACIONNUMERO" name="DOCUMENTOIDENTIFICACIONNUMERO" required />
+        
+        <input type="submit" value="Crear">
+        
+    </form>
+</body>
+</html>
