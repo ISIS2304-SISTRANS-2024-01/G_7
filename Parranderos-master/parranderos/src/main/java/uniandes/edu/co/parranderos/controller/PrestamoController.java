@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.RestController;
@@ -45,10 +46,25 @@ public class PrestamoController
         return "redirect:/prestamo/new";
     }
 
-    // @PostMapping("/prestamo/new/save")
-    // public String prestamoGuardar(@ModelAttribute Prestamo prestamo) 
-    // {
-    //     prestamoRepository.save(prestamo);
-    //     return "redirect:/prestamoNuevo";
-    // }
+    @GetMapping("/operacionprestamo/pagarCuota")
+    public String PrestamoPagar(Model model) 
+    {
+        model.addAttribute("numeroprestamo", "");
+        model.addAttribute("nuevoMonto", 0);
+        return "operacionprestamo";
+    }
+
+    @GetMapping("/operacionprestamo/{numeroprestamo}/{monto}/edit/save")
+    public String PrestamoPagarCuotaGet(@PathVariable("numeroprestamo") String numeroprestamo, @PathVariable("monto") Integer montoNuevo)
+    {
+        prestamoRepository.actualizarPrestamoPagarCuota(numeroprestamo, montoNuevo);
+        return "redirect:/";
+    }
+
+    @PostMapping("/prestamo/{numeroprestamo}/{monto}/edit/save")
+    public String PrestamoPagarCuota(@PathVariable("numeroprestamo") String numeroprestamo, @PathVariable("monto") Integer montoNuevo)
+    {
+        prestamoRepository.actualizarPrestamoPagarCuota(numeroprestamo, montoNuevo);
+        return "redirect:/";
+    }
 }    

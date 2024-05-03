@@ -28,5 +28,9 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer>
     // @Query(value = "UPDATE prestamo SET tipoPrestamo = :tipoPrestamo, estado = :estado, monto = :monto, interes = :interes, numCuotas = :numCuotas, mesPago = :mesPago, valorCuota = :valorCuota WHERE idPrestamo = :idPrestamo", nativeQuery = true)
     // void actualizarPrestamo(@Param("idPrestamo") String idPrestamo, @Param("tipoPrestamo") String tipoPrestamo, @Param("estado") String estado, @Param("monto") Double monto, @Param("interes") Double interes, @Param("numCuotas") Integer numCuotas, @Param("mesPago") Date mesPago, @Param("valorCuota") Double valorCuota);
     
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE prestamo SET monto = monto - :montoNuevo WHERE numeroprestamo = :numeroprestamo", nativeQuery = true)
+    void actualizarPrestamoPagarCuota(@Param("numeroprestamo") String numeroprestamo, @Param("montoNuevo") Integer montoNuevo);
     
 } 

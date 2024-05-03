@@ -36,10 +36,10 @@ public interface OperacionPrestamoRepository extends JpaRepository<OperacionPres
     @Query(value = "UPDATE operacionprestamo SET id = :id, numeroprestamo = :numeroprestamo, idprestamo = :idprestamo, tipoprestamo = :tipoprestamo WHERE id = :idParam", nativeQuery = true)
     void actualizarPrestamo(@Param("id") Cliente id, @Param("numeroprestamo") String numeroprestamo, @Param("idprestamo") Prestamo prestamo, @Param("tipoprestamo") Prestamo prestamo2, @Param("idParam") Integer integer);
 
-    @Modifying
-    @Transactional
-    @Query(value = "UPDATE operacionprestamo SET monto = monto - :montoNuevo WHERE numeroprestamo = :numeroprestamo", nativeQuery = true)
-    void actualizarPrestamoPagarCuota(@Param("numeroprestamo") String numeroprestamo, @Param("montoNuevo") String montoNuevo);
+    // @Modifying
+    // @Transactional
+    // @Query(value = "UPDATE operacionprestamo SET monto = monto - :montoNuevo WHERE numeroprestamo = :numeroprestamo", nativeQuery = true)
+    // void actualizarPrestamoPagarCuota(@Param("numeroprestamo") String numeroprestamo, @Param("montoNuevo") Integer montoNuevo);
 
     @Modifying
     @Transactional
