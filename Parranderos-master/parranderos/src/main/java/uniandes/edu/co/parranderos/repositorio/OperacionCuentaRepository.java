@@ -68,10 +68,10 @@ public interface OperacionCuentaRepository extends JpaRepository<Cuenta, Integer
         @Modifying
         @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
         @Query(value = "SELECT OC.ID, OC.TIPOPAGO FROM OPERACIONCUENTA OC WHERE OC.NUMEROCUENTA = :NUMEROCUENTA", nativeQuery = true)
-        Collection<RespuestaInformacionCuenta> darInformacionOperacionesCuentaRC();
+        Collection<RespuestaInformacionCuenta> darInformacionOperacionesCuentaRC(@Param("NUMEROCUENTA") Integer NUMEROCUENTA);
 
         @Modifying
         @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = Exception.class)
         @Query(value = "SELECT OC.ID, OC.TIPOPAGO FROM OPERACIONCUENTA OC WHERE OC.NUMEROCUENTA = :NUMEROCUENTA", nativeQuery = true)
-        Collection<RespuestaInformacionCuenta> darInformacionOperacionesCuentaSE();
+        Collection<RespuestaInformacionCuenta> darInformacionOperacionesCuentaSE(@Param("NUMEROCUENTA") Integer NUMEROCUENTA);
 }

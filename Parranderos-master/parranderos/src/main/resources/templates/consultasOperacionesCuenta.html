@@ -1,25 +1,33 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banco de los Andes</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 </head>
-
 <body>
-    <h1>
-    Consultar Operaciones de Cuenta
-</h1>
-
-<h2>Ingresa el numero de cuenta</h2>
-    <form action="/process-account" method="post">
+    <h1>Consultar Operaciones de Cuenta</h1>
+    <h2>Ingresa el numero de cuenta</h2>
+    <form action="/ConsultasOperacionesCuenta" method="post">
         <label for="accountNumber">Numero de Cuenta:</label>
         <input type="text" id="accountNumber" name="accountNumber" required><br><br>
-        <button type="submit" name="submitAction" value="checkBalance">Serializable</button>
-        <button type="submit" name="submitAction" value="withdraw">Read Commited</button>
+        <input type="submit" name="submitAction" value="Serializable">
+        <input type="submit" name="submitAction" value="Read Commited">
     </form>
-</body>
+    <h2>Resultados de la Operación:</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Tipo de Pago</th>
+    </tr>
+    <th:block th:each="operacion : ${operaciones}">
+        <tr>
+            <td th:text="${operacion.id}"></td>
+            <td th:text="${operacion.tipoPago}"></td>
+        </tr>
+    </th:block>
+</table>
 
+</body>
 </html>
