@@ -6,8 +6,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import uniandes.edu.co.parranderos.modelo.Prestamo;
 
@@ -17,7 +15,8 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer>
     Collection<Prestamo> darPrestamos();
     
     @Query(value = "SELECT * FROM prestamo WHERE idprestamo = :idprestamo", nativeQuery = true)
-    Prestamo darPrestamo(@Param("id") String idprestamo);
+    Prestamo darPrestamo(@Param("idprestamo") String idprestamo);
+
 
     @Modifying
     @Transactional
@@ -29,8 +28,11 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer>
     // @Query(value = "UPDATE prestamo SET tipoPrestamo = :tipoPrestamo, estado = :estado, monto = :monto, interes = :interes, numCuotas = :numCuotas, mesPago = :mesPago, valorCuota = :valorCuota WHERE idPrestamo = :idPrestamo", nativeQuery = true)
     // void actualizarPrestamo(@Param("idPrestamo") String idPrestamo, @Param("tipoPrestamo") String tipoPrestamo, @Param("estado") String estado, @Param("monto") Double monto, @Param("interes") Double interes, @Param("numCuotas") Integer numCuotas, @Param("mesPago") Date mesPago, @Param("valorCuota") Double valorCuota);
     
+
+
     @Modifying
     @Transactional
-    @Query("UPDATE Prestamo p SET p.estado = 'Cerrado' WHERE p.id = :idPrestamo")
-    void actualizarEstadoPrestamoACerrado(String idPrestamo); 
+    @Query(value = "UPDATE prestamo SET monto = monto - :montoNuevo WHERE idprestamo = :idprestamo", nativeQuery = true)
+    void actualizarPrestamoPagarCuota(@Param("idprestamo") String idprestamo, @Param("montoNuevo") Integer montoNuevo);
+    
 } 

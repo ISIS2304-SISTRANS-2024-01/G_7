@@ -12,7 +12,6 @@ import jakarta.persistence.Table;
 @Table(name="CUENTAS")
 public class Cuenta {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)  
     private Integer NUMEROCUENTA;
 
     private String TIPO;
@@ -28,8 +27,9 @@ public class Cuenta {
     public Cuenta()
     {;}
 
-    public Cuenta(String TIPO, Integer SALDO, Date FECHAULTIMATRANSACCION, String ESTADO, Integer DOCUMENTOIDENTIDICACION)
+    public Cuenta(Integer NUMEROCUENTA, String TIPO, Integer SALDO, Date FECHAULTIMATRANSACCION, String ESTADO, Integer DOCUMENTOIDENTIDICACION)
     {
+    this.NUMEROCUENTA=NUMEROCUENTA;
     this.TIPO = TIPO;
     this.SALDO = SALDO;
     this.FECHAULTIMATRANSACCION = FECHAULTIMATRANSACCION;

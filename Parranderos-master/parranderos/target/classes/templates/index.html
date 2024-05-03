@@ -10,6 +10,11 @@
     <h1>BancAndes</h1>
     <img th:src="@{/images/Imagen_BancAndes.jpg}" width="250">
 
+
+    <div>
+        <a th:href="@{/cuenta/new}" class="btn btn-primary">Crear Cuenta</a>
+        <a th:href="@{/operacioncuenta/closed}" class="btn btn-primary">Cerrar Cuenta</a>
+        <a th:href="@{/operacioncuenta/consignar}" class="btn btn-primary">Consignar a Cuenta</a>
     <div>
         <a th:href="@{/operacionprestamo/new}" class="btn btn-primary">Crear Prestamo</a>
         <a th:href="@{/operacionprestamo/{id}/edit/save}" class="btn btn-primary">Operacion Sobre Prestamo</a>
@@ -22,6 +27,7 @@
         <a th:href="@{/puntos/new}" class="btn btn-primary">Crear punto de atencion</a>
         <a th:href="@{/puntos/delete}" class="btn btn-primary">Borrar punto de atencion</a>
         <a th:href="@{/cuentas}" class="btn btn-primary">Consultar cuentas</a>
+    <div>
     </div>
     <br/>
 

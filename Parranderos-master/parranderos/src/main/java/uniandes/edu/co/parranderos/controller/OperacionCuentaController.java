@@ -1,19 +1,21 @@
 package uniandes.edu.co.parranderos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionSystemException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.transaction.Transactional;
-import uniandes.edu.co.parranderos.modelo.Cuenta;
+import uniandes.edu.co.parranderos.modelo.Cliente;
 import uniandes.edu.co.parranderos.modelo.OperacionCuenta;
+import uniandes.edu.co.parranderos.modelo.OperacionPrestamo;
 import uniandes.edu.co.parranderos.repositorio.CuentaRepository;
 import uniandes.edu.co.parranderos.repositorio.OperacionCuentaRepository;
 
@@ -111,6 +113,40 @@ public class OperacionCuentaController
         return "redirect:/operacionCuenta/nueva";
 
         // revisar redirecciones
+    }
+
+    @GetMapping("/operacioncuenta/new")
+    public String OperacionCuentaForm(Model model)
+    {
+        model.addAttribute("operacioncuenta", new OperacionCuenta());
+        return "cuentaNueva";
+    }
+
+    @GetMapping("/operacioncuenta/closed")
+    public String OperacionCuentaCerrar(Model model)
+    {
+        model.addAttribute("numerocuenta", new OperacionCuenta());
+        return "operacionCuentaCerrado";
+    }
+
+    @PostMapping("/operacioncuenta/{NUMEROCUENTA}/close")
+    public String operacionCerrarCuenta(@PathVariable("NUMEROCUENTA") Integer NUMEROCUENTA)
+    {
+        operacionCuentaRepository.actualizarEstadoCuentaACerrada(NUMEROCUENTA);
+        return "confirmacionCuentaCerrada";
+    }
+
+    @GetMapping("/operacioncuenta/confirmacion")
+    public String confirmacionCuentaCerrada()
+    {
+        return "confirmacionCuentaCerrada";
+    }
+
+    @GetMapping("/operacioncuenta/consignar")
+    public String OperacionCuentaConsignar(Model model)
+    {
+        model.addAttribute("numerocuenta", new OperacionCuenta());
+        return "operacionCuentaConsignar";
     }
 
 
