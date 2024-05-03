@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import uniandes.edu.co.parranderos.modelo.Cuenta;
 
 import java.sql.Date;
-import java.util.Collection;
 
 
 public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
@@ -28,6 +27,7 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
         @Query(value = "INSERT INTO CUENTA (NUMEROCUENTA, TIPO, SALDO, FECHAULTIMATRANSACCION, ESTADO, DOCUMENTOIDENTIFICACIONNUMERO) VALUES (:NUMEROCUENTA, :TIPO, :SALDO, TO_TIMESTAMP('26/04/24 08:37:40,108891000', 'DD/MM/YY HH:MI:SS,FF'), :ESTADO, :DOCUMENTOIDENTIFICACIONNUMERO)", nativeQuery = true)
         void insertarCuenta(@Param("NUMEROCUENTA") Integer NUMEROCUENTA, @Param("TIPO") String TIPO, @Param("SALDO") Integer SALDO, @Param("ESTADO") String ESTADO, @Param("DOCUMENTOIDENTIFICACIONNUMERO") Integer DOCUMENTOIDENTIFICACIONNUMERO);
 
+                        
         /* 
         @Modifying
         @Transactional

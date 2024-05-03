@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="CUENTAS")
+@Table(name="OPERACIONCUENTA")
 public class OperacionCuenta {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)  
@@ -15,14 +15,14 @@ public class OperacionCuenta {
 
     private String TIPOPAGO;
 
-    private Integer NUMEROCUENTAAFECTADA;
+    private String NUMEROCUENTAAFECTADA;
 
     private Integer NUMEROCUENTA;
 
     public OperacionCuenta()
     {;}
 
-    public OperacionCuenta(Integer ID, String TIPOPAGO, Integer NUMEROCUENTAAFECTADA, Integer NUMEROCUENTA)
+    public OperacionCuenta(Integer ID, String TIPOPAGO, String NUMEROCUENTAAFECTADA, Integer NUMEROCUENTA)
     {
     this.ID = ID;
     this.TIPOPAGO = TIPOPAGO;
@@ -46,11 +46,11 @@ public class OperacionCuenta {
         TIPOPAGO = tIPOPAGO;
     }
 
-    public Integer getNUMEROCUENTAAFECTADA() {
+    public String getNUMEROCUENTAAFECTADA() {
         return NUMEROCUENTAAFECTADA;
     }
 
-    public void setNUMEROCUENTAAFECTADA(Integer nUMEROCUENTAAFECTADA) {
+    public void setNUMEROCUENTAAFECTADA(String nUMEROCUENTAAFECTADA) {
         NUMEROCUENTAAFECTADA = nUMEROCUENTAAFECTADA;
     }
 

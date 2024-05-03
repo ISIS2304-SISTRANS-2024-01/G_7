@@ -2,12 +2,14 @@ package uniandes.edu.co.parranderos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.transaction.Transactional;
@@ -24,15 +26,37 @@ public class OperacionCuentaController
     @Autowired
     private OperacionCuentaRepository operacionCuentaRepository;
 
-    @Autowired
-    private CuentaRepository cuentaRepository;
-
     @GetMapping("/operacionCuenta/nueva")
     public String operacionCuentaForma(Model model)
     {
         model.addAttribute("OperacionCuenta", new OperacionCuenta());
         return "OperacionCuenta nueva";
     }
+
+    @GetMapping("/consultar-operaciones-cuenta")
+    @Transactional
+    public String ConsultarOperacionesCuenta(Model model, @RequestParam("cuenta") Integer cuenta, @RequestParam("tipo") String tipo) throws InterruptedException {                
+        try {
+            if (tipo.equals("serializable")){
+                Thread.sleep(30000);
+                model.addAttribute("operaciones", operacionCuentaRepository.darOperacionesSerializable(cuenta));
+            }
+            else{
+                model.addAttribute("operaciones", operacionCuentaRepository.darOperacionesRead(cuenta));
+            }
+            return "consultarOperacionesCuenta";
+        } catch (TransactionSystemException ex) {
+            // Captura la excepción de la transacción y muestra un mensaje al usuario
+            return "consultarOperacionesCuentaFallido";
+        }
+    }
+
+    /*
+    @GetMapping("/consultar-operaciones-cuenta")
+    public String ConsultarOperacionesCuenta(Model model) {
+        model.addAttribute("operaciones", operacionCuentaRepository.darOperaciones(23456789));
+        return model.toString();
+    } */
 
     @PostMapping("/retirar")
     @Transactional
