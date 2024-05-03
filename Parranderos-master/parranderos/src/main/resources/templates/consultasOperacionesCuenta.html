@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de los Andes</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+    <h1>
+    Consultar Operaciones de Cuenta
+</h1>
+
+<h2>Ingresa el numero de cuenta</h2>
+    <form action="/process-account" method="post">
+        <label for="accountNumber">Numero de Cuenta:</label>
+        <input type="text" id="accountNumber" name="accountNumber" required><br><br>
+        <button type="submit" name="submitAction" value="checkBalance">Serializable</button>
+        <button type="submit" name="submitAction" value="withdraw">Read Commited</button>
+    </form>
+</body>
+
+</html>
