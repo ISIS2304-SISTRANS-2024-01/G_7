@@ -1,18 +1,15 @@
 package uniandes.edu.co.parranderos.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.parranderos.modelo.Cliente;
 import uniandes.edu.co.parranderos.modelo.OperacionPrestamo;
-import uniandes.edu.co.parranderos.modelo.Prestamo;
 import uniandes.edu.co.parranderos.repositorio.ClienteRepository;
 import uniandes.edu.co.parranderos.repositorio.OperacionPrestamoRepository;
 
@@ -39,6 +36,29 @@ public class OperacionPrestamoController
         return "prestamoNuevo";
     }
 
+    @GetMapping("/operacionprestamo/closed")
+    public String OperacionPrestamoCerrar(Model model)
+    {
+        model.addAttribute("numeroprestamo", new OperacionPrestamo());
+        return "operacionPrestamoCerrado";
+    }
+
+    @PostMapping("/operacionprestamo/{numeroprestamo}/close")
+    public String operacionCerrar(@PathVariable("numeroprestamo") String numeroprestamo)
+    {
+        operacionPrestamoRepository.actualizarEstadoPrestamoACerrado(numeroprestamo);
+        return "redirect:/operacionprestamo/new";
+    }
+
+    @GetMapping("/operacionprestamo/confirmacion")
+    public String confirmacionCerrado()
+    {
+        return "confirmacionPrestamoCerrado";
+    }
+
+
+
+
     @PostMapping("/operacionprestamo/{id}/new/save")
     public String operacionesPrestamoGuardar(@PathVariable("id") Cliente id, @ModelAttribute OperacionPrestamo operacionPrestamo)
     {
@@ -48,15 +68,6 @@ public class OperacionPrestamoController
 
     @Autowired
     private ClienteRepository clienteRepository; 
-
-    // @GetMapping("/prestamo/new")
-    // public String mostrarFormularioPrestamo(Model model) 
-    // {
-    //     model.addAttribute("prestamo", new Prestamo());
-    //     model.addAttribute("clientes", clienteRepository.findAll()); // Asumiendo que tienes un repositorio de clientes
-    //     return "formulario_prestamo";
-    // }
-
 
     // PARA UPDATE
     @GetMapping("/operacionprestamo/{id}/edit")
@@ -79,5 +90,23 @@ public class OperacionPrestamoController
     {
         operacionPrestamoRepository.actualizarPrestamo(id, operacionPrestamo.getNumeroprestamo(), operacionPrestamo.getPrestamo(), operacionPrestamo.getPrestamo(), operacionPrestamo.getId());
         return "redirect:/operacionprestamo";
+    }
+
+
+    @GetMapping("/operacionprestamo/pagarCuota")
+    public String operacionPrestamoPagar(Model model) 
+    {
+        model.addAttribute("numeroprestamo", "");
+        model.addAttribute("nuevoMonto", "");
+        model.addAttribute("operacionPrestamo", new OperacionPrestamo());
+        return "operacionPrestamo";
+    }
+
+
+    @PostMapping("/operacionprestamo/{numeroprestamo}/{monto}/edit/save")
+    public String operacionPrestamoPagarCuota(@PathVariable("numeroprestamo") String numeroprestamo, @PathVariable("monto") Integer montoNuevo)
+    {
+        operacionPrestamoRepository.actualizarPrestamoPagarCuota(numeroprestamo, numeroprestamo);
+        return "redirect:/";
     }
 }

@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Operación sobre Préstamo</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 </head>
+
 <body>
     <h1>Registro de Operación sobre Préstamo</h1>
+    <form action="#" th:action="@{/operacionprestamo/{id}/{id2}/edit/save}" method="post">
 
-    <form action="#" th:action="@{/operacionprestamo/{id}/edit/save}" method="post">
+        <label for="numeroprestamo">ID del Préstamo:</label>
+        <input type="text" id="numeroprestamo" name="numeroprestamo" required>
 
-        <label for="tipo-operacion">Tipo de Operación:</label>
-        <select name="tipo-operacion" id="tipo-operacion" required>
-            <option value="pago-ordinario">Pago Ordinario</option>
-            <option value="pago-extraordinario">Pago Extraordinario</option>
-        </select>
+        <label>Monto del Pago</label>
+        <input type="text" id="monto" name="monto" required />
 
-        <br>
-        <label for="id-prestamo">ID del Préstamo:</label>
-        <input type="text" id="id-prestamo" name="id-prestamo" required>
-        <br>
+        <a id="deleteLink" href="#">
+            <input type="submit" value="Realizar Pago">    
+        </a>
 
-        <label for="monto">Monto del Pago:</label>
-        <input type="number" id="monto" name="monto" required>
-        <br>
-
-        <input type="submit" value="Registrar Operación">
     </form>
+
+    <script>
+        var numprestamoInput = document.getElementById('numeroprestamo');
+        var montoInput = document.getElementById('monto');
+        var deleteLink = document.getElementById('deleteLink');
+
+        numprestamoInput.addEventListener('input', function()
+        {
+            var prestamoValue = numprestamoInput.value;
+            var montoValue = montoInput.value;
+
+            var deleteUrl = '/operacionprestamo/' + prestamoValue + montoValue +'/edit/save';
+            deleteLink.setAttribute('href', deleteUrl);
+        });
+
+    </script>
+
+
 </body>
 </html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Préstamo a Cerrado</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+    <h1>Actualizar Préstamo a Cerrado</h1>
+    <form action="#" th:action="@{/operacionprestamo/confirmacion}">
+        
+        <label for="numeroprestamo">ID del Préstamo:</label>
+        <input type="text" id="numeroprestamo" name="numeroprestamo" required>
+
+        <a id="deleteLink" href="#">
+            <input type="submit" value="Actualizar a Cerrado">    
+        </a>
+
+    </form>
+
+    <script>
+        // Obtener referencia al campo de entrada y al enlace de borrado
+        var idInput = document.getElementById('numeroprestamo');
+        var deleteLink = document.getElementById('deleteLink');
+    
+        // Escuchar el evento 'input' en el campo de entrada
+        idInput.addEventListener('input', function() 
+        {
+            // Obtener el valor del campo de entrada
+            var idValue = idInput.value;
+            
+            // Construir la URL de borrado y asignarla al enlace
+            var deleteUrl = '/operacionprestamo/' + idValue + '/close';
+            deleteLink.setAttribute('href', deleteUrl);
+        });
+    </script>
+
+</body>
+</html>

@@ -33,10 +33,9 @@ public class Prestamo
 
 
 
-    public Prestamo(String estado, Double monto, Double intereses, Integer numcuotas, String mespago, Double valorcuota, Cliente id)
+    public Prestamo(String estado, Double monto, Double intereses, Integer numcuotas, String mespago, Double valorcuota, Cliente id) 
     {
-        //this.idPrestamo = idPrestamo;
-        //this.tipoPrestamo = tipoPrestamo;
+        this.prestamoPK = new PrestamoPK();
         this.estado = estado;
         this.monto = monto;
         this.intereses = intereses;
@@ -45,7 +44,7 @@ public class Prestamo
         this.valorcuota = valorcuota;
         this.id = id;
     }
-
+    
     public Prestamo()
     {;}
 
@@ -118,6 +117,4 @@ public class Prestamo
     {
         this.id = id;
     }
-
-    
 }

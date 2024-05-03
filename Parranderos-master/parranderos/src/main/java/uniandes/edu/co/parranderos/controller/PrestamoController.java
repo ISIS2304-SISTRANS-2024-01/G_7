@@ -26,7 +26,6 @@ public class PrestamoController
     public String prestamo(Model model )
     {
         model.addAttribute("prestamo", prestamoRepository.darPrestamos());
-        
         return "prestamo";
         // return model.toString();
     }
@@ -35,25 +34,21 @@ public class PrestamoController
     public String prestamoForm(Model model)
     {
         model.addAttribute("prestamo", new Prestamo());
-
         return "prestamoNuevo";
     }
 
     //PARA INSERT
     @PostMapping("/prestamo/new/save")
-    // @GetMapping("/prestamo/new/save")
     public String prestamoGuardar(@ModelAttribute Prestamo prestamo, @ModelAttribute PrestamoPK prestamoPK)
     {
         prestamoRepository.insertarPrestamo(prestamoPK.getIdprestamo(), prestamoPK.getTipoprestamo(), prestamo.getEstado(), prestamo.getMonto(), prestamo.getIntereses(), prestamo.getNumcuotas(), prestamo.getMespago(), prestamo.getValorcuota());
-
-        //return "prestamoNuevo";
-        return "redirect:/prestamoNuevo";
+        return "redirect:/prestamo/new";
     }
 
-    @PostMapping("/actualizar-cerrado")
-    public String actualizarEstadoCerrado(@RequestParam("idPrestamo") String idPrestamo) 
-    {
-        prestamoRepository.actualizarEstadoPrestamoACerrado(idPrestamo);
-        return "redirect:/prestamoCerrado";
-    }
-}
+    // @PostMapping("/prestamo/new/save")
+    // public String prestamoGuardar(@ModelAttribute Prestamo prestamo) 
+    // {
+    //     prestamoRepository.save(prestamo);
+    //     return "redirect:/prestamoNuevo";
+    // }
+}    
