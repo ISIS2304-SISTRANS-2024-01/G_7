@@ -64,7 +64,6 @@ public interface OperacionCuentaRepository extends JpaRepository<Cuenta, Integer
         @Query(value = "UPDATE cuenta SET saldo = saldo + :monto WHERE numero = :cuentaDestino", nativeQuery = true)
         void sumarSaldoDestino(@Param("monto") double monto, @Param("cuentaDestino") Integer cuentaDestino);
 
-
         @Modifying
         @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = Exception.class)
         @Query(value = "SELECT OC.ID, OC.TIPOPAGO FROM OPERACIONCUENTA OC WHERE OC.NUMEROCUENTA = :NUMEROCUENTA", nativeQuery = true)
