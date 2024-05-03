@@ -8,33 +8,34 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 
-
 <body>
     <h1>Crear un Prestamo</h1>
     <form action="#" th:action="@{/prestamo/new/save}" method="post">
 
-        <label>idprestamo</label>
+        <label>Id Prestamo</label>
         <input type="text" id="idprestamo" name="idprestamo" required />
 
-        <label>tipoprestamo</label>
+        <label>tipo Prestamo</label>
         <input type="text" id="tipoprestamo" name="tipoprestamo" required />
 
-        <label>estado</label>
+        <label>Estado</label>
         <input type="text" id="estado" name="estado" required />
 
-        <label>monto</label>
+        <label>Monto</label>
         <input type="text" id="monto" name="monto" required />
 
-        <label>intereses</label>
+        <label>Intereses</label>
         <input type="text" id="intereses" name="intereses" required />
 
-        <label>mespago</label>
+        <label>Numero de Cuotas</label>
+        <input type="text" id="numcuotas" name="numcuotas" required />
+
+        <label>Mes Pago</label>
         <input type="text" id="mespago" name="mespago" required />
 
-        <label>valorcuota</label>
+        <label>Valor Cuota</label>
         <input type="text" id="valorcuota" name="valorcuota" required />
 
-        
         <label>id</label>
         <input type="text" id="id" name="id" required />
         
@@ -43,13 +44,3 @@
     </form>
 </body>
 </html>
-
-
-
-
-
-{% comment %} 
-<label>Cliente</label>
-<select id="cliente" name="cliente" required>
-    <option th:each="cliente : ${clientes}" th:value="${cliente}" th:text="${cliente.nombre}"></option>
-</select> {% endcomment %}
