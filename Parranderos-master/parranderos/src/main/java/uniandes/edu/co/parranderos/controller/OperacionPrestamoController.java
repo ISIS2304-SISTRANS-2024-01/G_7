@@ -1,7 +1,5 @@
 package uniandes.edu.co.parranderos.controller;
 
-import java.math.BigDecimal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import uniandes.edu.co.parranderos.modelo.Cliente;
 import uniandes.edu.co.parranderos.modelo.OperacionPrestamo;
@@ -59,7 +56,6 @@ public class OperacionPrestamoController
         return "confirmacionPrestamoCerrado";
     }
 
-
     @PostMapping("/operacionprestamo/{id}/new/save")
     public String operacionesPrestamoGuardar(@PathVariable("id") Cliente id, @ModelAttribute OperacionPrestamo operacionPrestamo)
     {
@@ -85,7 +81,6 @@ public class OperacionPrestamoController
             return "redirect:/operacionprestamo";
         }
     }
-
 
     @PostMapping("/operacionprestamo/{id}/edit/save")
     public String operacionesPrestamoEditarGuardar(@PathVariable("id") Cliente id, @ModelAttribute OperacionPrestamo operacionPrestamo)
