@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import uniandes.edu.co.parranderos.modelo.Cuenta;
 
 import java.sql.Date;
-import java.util.Collection;
 
 
 public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
@@ -25,10 +24,10 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
 
         @Modifying
         @Transactional
-        @Query(value = "INSERT INTO CUENTA (NUMEROCUENTA, TIPO, SALDO, FECHAULTIMATRANSACCION, ESTADO, DOCUMENTOIDENTIFICACIONNUMERO) VALUES ( :NUMEROCUENTA, :TIPO, :SALDO, :FECHAULTIMATRANSACCION, :ESTADO, :DOCUMENTOIDENTIFICACIONNUMERO)", nativeQuery = true)
-        void insertarCuenta(@Param("NUMEROCUENTA") Integer NUMEROCUENTA, @Param("TIPO") String TIPO, @Param("SALDO") Integer SALDO,
-                        @Param("FECHAULTIMATRANSACCION") Date FECHAULTIMATRANSACCION, @Param("ESTADO") String ESTADO, @Param("DOCUMENTOIDENTIFICACIONNUMERO") Integer DOCUMENTOIDENTIFICACIONNUMERO);
+        @Query(value = "INSERT INTO CUENTA (NUMEROCUENTA, TIPO, SALDO, FECHAULTIMATRANSACCION, ESTADO, DOCUMENTOIDENTIFICACIONNUMERO) VALUES (:NUMEROCUENTA, :TIPO, :SALDO, TO_TIMESTAMP('26/04/24 08:37:40,108891000', 'DD/MM/YY HH:MI:SS,FF'), :ESTADO, :DOCUMENTOIDENTIFICACIONNUMERO)", nativeQuery = true)
+        void insertarCuenta(@Param("NUMEROCUENTA") Integer NUMEROCUENTA, @Param("TIPO") String TIPO, @Param("SALDO") Integer SALDO, @Param("ESTADO") String ESTADO, @Param("DOCUMENTOIDENTIFICACIONNUMERO") Integer DOCUMENTOIDENTIFICACIONNUMERO);
 
+                        
         /* 
         @Modifying
         @Transactional
@@ -36,4 +35,24 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Integer> {
         void actualizarCuenta(@Param("NUMEROCUENTA") Integer NUMEROCUENTA, @Param("ESTADO") String ESTADO,
                         @Param("SALDO") Integer SALDO);
         */
+
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE cuenta SET SALDO = SALDO + :SALDONUEVO WHERE NUMEROCUENTA = :NUMEROCUENTA", nativeQuery = true)
+        void consignarACuenta(@Param("NUMEROCUENTA") String NUMEROCUENTA, @Param("SALDONUEVO") Integer SALDONUEVO);
+
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE cuenta SET SALDO = SALDO - :SALDONUEVO WHERE NUMEROCUENTA = :NUMEROCUENTA", nativeQuery = true)
+        void retirarDeCuenta(@Param("NUMEROCUENTA") String NUMEROCUENTA, @Param("SALDONUEVO") Integer SALDONUEVO);
+
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE cuenta SET SALDO = SALDO - :SALDONUEVO WHERE NUMEROCUENTA = :NUMEROCUENTA", nativeQuery = true)
+        void trasferirDeCuenta(@Param("NUMEROCUENTA") String NUMEROCUENTA, @Param("SALDONUEVO") Integer SALDONUEVO);
+
+        @Modifying
+        @Transactional
+        @Query(value = "UPDATE cuenta SET SALDO = SALDO + :SALDONUEVO WHERE NUMEROCUENTA = :NUMEROCUENTAD", nativeQuery = true)
+        void trasferirHaciaCuenta(@Param("NUMEROCUENTAD") String NUMEROCUENTAD, @Param("SALDONUEVO") Integer SALDONUEVO);
 }
