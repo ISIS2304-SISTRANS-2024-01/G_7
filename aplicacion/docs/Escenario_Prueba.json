@@ -1,0 +1,77 @@
+//Cliente
+db.cliente.insert({
+    tipo_cliente: 'Natural',
+    // nombre: 'Juan', // Campo omitido
+    apellido: 'Perez',
+    numero_identificacion: '123456789',
+    tipo_identificacion: 'DNI',
+    login: 'juan.perez',
+    clave: 'password123',
+    nacionalidad: 'Argentina',
+    direccion: 'Calle Falsa 123',
+    correo: 'juan.perez@example.com',
+    celular: '1234567890',
+    ciudad: 'Buenos Aires',
+    departamento: 'Capital Federal',
+    codigo_postal: '1000',
+    cuenta: ['123-456-789']
+  });
+
+//Cuenta
+db.cuenta.insert({
+    tipo: 'Privada', //No permitido
+    estado: 'Activa',
+    numeroCuenta: '1234567890',
+    saldo: 5000,
+    fecha_ultima_transaccion: new Date('2024-05-01T10:00:00Z'),
+    fecha_creacion: new Date('2023-01-01T10:00:00Z'),
+    operaciones_cuenta: [
+      {
+        _id: 1,
+        tipo: 'depositar', // Valor no permitido
+        cuenta_afectada: '1234567890',
+        fecha: new Date('2024-05-01T10:00:00Z'),
+        valor: 1000,
+        punto_atencion: [
+          {
+            tipo: 'personalizada',
+            operaciones_validas: ['abrirCuenta', 'cerrarCuenta', 'consignar', 'retirar', 'trasferir'],
+            oficina: 101
+          }
+        ]
+      }
+    ]
+  });
+
+//Empleado
+db.empleado.insert({
+    rol: 'Supervisor', // Valor no permitido
+    nombre: 'Ana',
+    apellido: 'Gomez',
+    numero_identificacion: '987654321',
+    tipo_identificacion: 'DNI',
+    login: 'ana.gomez',
+    clave: 'password456',
+    nacionalidad: 'Colombiana',
+    direccion: 'Carrera 45 #67-89',
+    correo: 'ana.gomez@example.com',
+    celular: '0987654321',
+    ciudad: 'Medellín',
+    departamento: 'Antioquia',
+    codigo_postal: '050001'
+  });
+
+//LogOperacion
+db.logoperacion.insert({
+    id: "12345" // Valor no permitido, debe ser un array de enteros o null
+  });
+  
+//Oficina
+db.oficina.insert({
+    // _id: 123, // Campo omitido
+    nombre: 'Sucursal A',
+    direccion: 'Calle Principal 123',
+    numero_puntos_atencion: 5,
+    empleados: ['Juan Perez', 'Ana Gomez', 'Carlos Rodriguez']
+  });
+  
